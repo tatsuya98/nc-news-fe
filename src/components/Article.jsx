@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchArticleById, fetchCommentsByArticleId } from "../../newsApi";
 import { useParams } from "react-router-dom";
-import Comments from "./Comments";
+import Comment from "./Comment";
 
 const Article = () => {
   const [article, setArticle] = useState({});
@@ -25,7 +25,11 @@ const Article = () => {
         <img src={article.article_img_url} alt="" />
         <p>{article.body}</p>
       </div>
-      <Comments comments={comments} />
+      <span className="comment-count">{comments.length} Comments</span>
+      <div className="comments-container"></div>
+      {comments.map((comment) => {
+        return <Comment key={comment.comment_id} comment={comment} />;
+      })}
     </div>
   );
 };

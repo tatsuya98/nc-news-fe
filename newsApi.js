@@ -28,3 +28,7 @@ export const fetchCommentsByArticleId = (article_id) => {
       return comments;
     });
 };
+
+export const updateVotesByCommentId = (comment_id, voteObject) => {
+  return newsApi.patch(`/comments/${comment_id}`, voteObject);
+};

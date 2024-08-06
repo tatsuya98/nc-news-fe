@@ -2,22 +2,34 @@
   --mg-100: 1rem;
   --mg-200: 1.5rem;
   --mg-300: 2rem;
+
+  --bg-color-300: hsl(220, 14%, 96%);
 }
+body {
+  background-color: var(--bg-color-300);
+}
+
 h1 {
   margin-left: var(--mg-100);
+  color: black;
+  display: inline;
 }
-img {
-  width: 200px;
+.home {
+  text-decoration: none;
+  width: fit-content;
 }
 .article-container {
   display: grid;
   grid-template-columns: 1fr;
   margin-left: var(--mg-100);
   margin-block: var(--mg-200);
-  width: fit-content;
+  background-color: #fff;
+  padding: var(--mg-300);
+  border-radius: 10px;
+  box-shadow: 10px 10px 0.5em gray;
 }
 .article-container p {
-  margin-top: var(--mg-200);
+  margin-bottom: var(--mg-100);
 }
 .active {
   background: black;
@@ -27,8 +39,23 @@ img {
 .active:hover {
   cursor: pointer;
 }
-.article-container h2 {
-  width: 70%;
+
+.article-container a {
+  width: fit-content;
+  margin-inline: auto;
+}
+.article-container button {
+  background-color: hsl(189, 19%, 7%);
+  color: white;
+  padding-inline: 3rem;
+  padding-block: 0.5rem;
+  border-radius: 0.625rem;
+}
+.article-container button:hover {
+  cursor: pointer;
+}
+.card-content {
+  text-align: center;
 }
 .comments-container {
   margin-top: var(--mg-300);
@@ -44,13 +71,30 @@ img {
   top: 0;
   margin-left: var(--mg-100);
 }
+.main-content p {
+  margin-top: var(--mg-100);
+}
+.comment-votes {
+  display: flex;
+  gap: var(--mg-100);
+  align-self: center;
+}
+.comment-vote-flex {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: var(--mg-100);
+}
+#upvote,
+#downvote {
+  padding: 0.5rem;
+}
+.error {
+  color: red;
+}
 @media (min-width: 50rem) {
   .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 300px);
-  }
-  .main-content {
-    margin-inline: auto;
   }
   .main-content p {
     width: 60ch;

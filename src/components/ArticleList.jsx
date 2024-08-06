@@ -27,13 +27,13 @@ const ArticleList = () => {
   return (
     <main>
       {isLoading && <h2>Loading...</h2>}
+      <Pagination
+        length={articles.length}
+        articlesPerPage={articlesPerPage}
+        handlePagination={handlePagination}
+        currentPage={currentPage}
+      />
       <div className="grid-container">
-        <Pagination
-          length={articles.length}
-          articlesPerPage={articlesPerPage}
-          handlePagination={handlePagination}
-          currentPage={currentPage}
-        />
         {currentArticles.map((article) => {
           return <ArticleCard key={article.article_id} article={article} />;
         })}
