@@ -3,8 +3,7 @@ const Header = () => {
   return (
     <>
       <header>
-        <Link to="/">
-          {" "}
+        <Link className="home" to="/">
           <h1>nc news</h1>
         </Link>
       </header>
