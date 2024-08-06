@@ -1,0 +1,25 @@
+h1 {
+  margin-left: 1rem;
+}
+img {
+  width: 200px;
+}
+.article-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-left: 1rem;
+}
+.article-container h2 {
+  width: 200px;
+}
+.pagination {
+  position: sticky;
+  top: 0;
+  margin-left: 1rem;
+}
+@media (min-width: 50rem) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+  }
+}

@@ -1,7 +1,15 @@
 import "./App.css";
+import "./reset.css";
+import ArticleList from "./components/ArticleList";
+import Header from "./components/Header";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <Header />
+      <ArticleList />
+    </>
+  );
 }
 
 export default App;
