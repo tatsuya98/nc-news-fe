@@ -9,6 +9,13 @@ export const fetchArticles = () => {
     return articles;
   });
 };
+export const fetchArticleById = (article_id) => {
+  return newsApi
+    .get(`/articles/${article_id}`)
+    .then(({ data: { article } }) => {
+      return article;
+    });
+};
 export const fetchTopics = () => {
   return newsApi.get("/topics").then(({ data: { topics } }) => {
     return topics;

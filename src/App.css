@@ -1,5 +1,10 @@
+:root {
+  --mg-100: 1rem;
+  --mg-200: 1.5rem;
+  --mg-300: 2rem;
+}
 h1 {
-  margin-left: 1rem;
+  margin-left: var(--mg-100);
 }
 img {
   width: 200px;
@@ -7,19 +12,47 @@ img {
 .article-container {
   display: grid;
   grid-template-columns: 1fr;
-  margin-left: 1rem;
+  margin-left: var(--mg-100);
+  margin-block: var(--mg-200);
+  width: fit-content;
+}
+.article-container p {
+  margin-top: var(--mg-200);
+}
+.active {
+  background: black;
+  color: #fff;
+  border: 1px solid #fff;
+}
+.active:hover {
+  cursor: pointer;
 }
 .article-container h2 {
-  width: 200px;
+  width: 70%;
+}
+.comments-container {
+  margin-top: var(--mg-300);
+}
+.comment-count {
+  font-weight: bold;
+}
+.commenter p {
+  font-weight: bold;
 }
 .pagination {
   position: sticky;
   top: 0;
-  margin-left: 1rem;
+  margin-left: var(--mg-100);
 }
 @media (min-width: 50rem) {
   .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 300px);
+  }
+  .main-content {
+    margin-inline: auto;
+  }
+  .main-content p {
+    width: 60ch;
   }
 }

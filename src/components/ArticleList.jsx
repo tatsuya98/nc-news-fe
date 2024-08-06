@@ -5,14 +5,14 @@ import Pagination from "./Pagination";
 
 const ArticleList = () => {
   const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [articlesPerPage, SetArticlesPerPage] = useState(10);
   useEffect(() => {
-    setLoading(true);
+    setIsLoading(true);
     fetchArticles().then((articles) => {
       setArticles(articles);
-      setLoading(false);
+      setIsLoading(false);
     });
   }, []);
   const indexOfLastArticle = currentPage * articlesPerPage;
@@ -25,16 +25,20 @@ const ArticleList = () => {
     setCurrentPage(pageNumber);
   };
   return (
-    <div className="grid-container">
-      <Pagination
-        length={articles.length}
-        articlesPerPage={articlesPerPage}
-        handlePagination={handlePagination}
-      />
-      {currentArticles.map((article) => {
-        return <ArticleCard key={article.article_id} article={article} />;
-      })}
-    </div>
+    <main>
+      {isLoading && <h2>Loading...</h2>}
+      <div className="grid-container">
+        <Pagination
+          length={articles.length}
+          articlesPerPage={articlesPerPage}
+          handlePagination={handlePagination}
+          currentPage={currentPage}
+        />
+        {currentArticles.map((article) => {
+          return <ArticleCard key={article.article_id} article={article} />;
+        })}
+      </div>
+    </main>
   );
 };
 export default ArticleList;
