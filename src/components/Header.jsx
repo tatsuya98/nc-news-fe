@@ -1,8 +1,12 @@
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
       <header>
-        <h1>nc news</h1>
+        <Link to="/">
+          {" "}
+          <h1>nc news</h1>
+        </Link>
       </header>
     </>
   );
