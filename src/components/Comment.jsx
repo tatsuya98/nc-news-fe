@@ -1,25 +1,11 @@
 import { useState } from "react";
 import { updateVotesByCommentId } from "../../newsApi";
+import Vote from "./Vote";
 
 const Comment = ({ comment }) => {
   const [votes, setVotes] = useState(comment.votes);
   const [error, setError] = useState(null);
-  const handleClick = (e) => {
-    setError(null);
-    setVotes((currentVotes) => Number(currentVotes) + Number(e.target.value));
-    updateVotesByCommentId(comment.comment_id, {
-      inc_votes: e.target.value,
-    }).catch((err) => {
-      if (e.target.innerText === "+") {
-        setVotes(
-          (currentVotes) => Number(currentVotes) - Number(e.target.value)
-        );
-      } else {
-        setVotes((currentVotes) => Number(currentVotes) + 1);
-      }
-      setError("Your vote was not successful. Please try again!");
-    });
-  };
+  const [isVisible, setIsVisible] = useState(true);
   return (
     <>
       <div className="contents">
@@ -31,12 +17,14 @@ const Comment = ({ comment }) => {
             <p>{comment.body}</p>
             <div className="comment-vote-flex">
               <span className="comment-votes">votes: {votes}</span>
-              <button id="upvote" value="1" onClick={handleClick}>
-                +
-              </button>
-              <button id="downvote" value="-1" onClick={handleClick}>
-                -
-              </button>
+              {isVisible && (
+                <Vote
+                  setVotes={setVotes}
+                  setIsVisible={setIsVisible}
+                  setError={setError}
+                  comment={comment}
+                />
+              )}
               {error && <p className="error">{error}</p>}
             </div>
           </div>
