@@ -32,3 +32,10 @@ export const fetchCommentsByArticleId = (article_id) => {
 export const updateVotesByCommentId = (comment_id, voteObject) => {
   return newsApi.patch(`/comments/${comment_id}`, voteObject);
 };
+export const updateCommentsByArticleId = (article_id, comment) => {
+  return newsApi
+    .post(`/articles/${article_id}/comments`, comment)
+    .then(({ data: { userComment } }) => {
+      return userComment;
+    });
+};

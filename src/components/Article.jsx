@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchArticleById, fetchCommentsByArticleId } from "../../newsApi";
 import { useParams } from "react-router-dom";
 import Comment from "./Comment";
+import CommentInput from "./CommentInput";
 
 const Article = () => {
   const [article, setArticle] = useState({});
@@ -26,10 +27,12 @@ const Article = () => {
         <p>{article.body}</p>
       </div>
       <span className="comment-count">{comments.length} Comments</span>
-      <div className="comments-container"></div>
-      {comments.map((comment) => {
-        return <Comment key={comment.comment_id} comment={comment} />;
-      })}
+      <CommentInput setComments={setCommments} article_id={article_id} />
+      <div className="comments-container">
+        {comments.map((comment) => {
+          return <Comment key={comment.comment_id} comment={comment} />;
+        })}
+      </div>
     </div>
   );
 };
