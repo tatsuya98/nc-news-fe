@@ -1,13 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { fetchArticleById, fetchCommentsByArticleId } from "../../newsApi";
 import { useParams } from "react-router-dom";
 import Comment from "./Comment";
 import CommentInput from "./CommentInput";
+import { UserContext } from "../context/UserContext";
+import Delete from "./Delete";
+import { ErrorContext } from "../context/ErrorContext";
 
 const Article = () => {
   const [article, setArticle] = useState({});
   const [comments, setCommments] = useState([]);
+  const [triggerCommentId, setTriggerCommentId] = useState("");
   const { article_id } = useParams();
+  const { user } = useContext(UserContext);
+  const { error } = useContext(ErrorContext);
   useEffect(() => {
     fetchArticleById(article_id).then((article) => {
       setArticle(article);
@@ -30,7 +36,26 @@ const Article = () => {
       <CommentInput setComments={setCommments} article_id={article_id} />
       <div className="comments-container">
         {comments.map((comment) => {
-          return <Comment key={comment.comment_id} comment={comment} />;
+          return (
+            <>
+              <Comment
+                setComments={setCommments}
+                key={comment.comment_id}
+                comment={comment}
+                article={article}
+                setTriggerCommentId={setTriggerCommentId}
+              />
+              {article.author === user && (
+                <Delete
+                  comment_id={comment.comment_id}
+                  setComments={setCommments}
+                />
+              )}
+              {error && triggerCommentId === comment.comment_id && (
+                <p className="error">{error}</p>
+              )}
+            </>
+          );
         })}
       </div>
     </div>

@@ -39,3 +39,7 @@ export const updateCommentsByArticleId = (article_id, comment) => {
       return userComment;
     });
 };
+
+export const deleteCommentByCommentId = (comment_id) => {
+  return newsApi.delete(`/comments/${comment_id}`);
+};
