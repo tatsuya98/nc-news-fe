@@ -1,12 +1,14 @@
-import { useContext } from "react";
 import { deleteCommentByCommentId } from "../../newsApi";
-import { ErrorContext } from "../context/ErrorContext";
 
-const Delete = ({ comment_id, setComments, setTriggerCommentId }) => {
-  const { setError } = useContext(ErrorContext);
+const Delete = ({
+  comment_id,
+  setComments,
+  setTriggerCommentId,
+  setCommentError,
+}) => {
   const handleClick = (e) => {
     e.preventDefault();
-    setError(null);
+    setCommentError(null);
     deleteCommentByCommentId(comment_id)
       .then(() => {
         setComments((currentComments) =>
@@ -14,7 +16,7 @@ const Delete = ({ comment_id, setComments, setTriggerCommentId }) => {
         );
       })
       .catch((err) => {
-        setError(
+        setCommentError(
           "there was an issue processing your delete request, please try again"
         );
         setTriggerCommentId(comment_id);

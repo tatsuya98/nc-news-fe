@@ -92,10 +92,7 @@ h1 {
 .error {
   color: red;
 }
-.flex-header {
-  display: flex;
-  justify-content: space-between;
-}
+
 nav {
   align-self: center;
 }

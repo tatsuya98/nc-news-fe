@@ -5,15 +5,14 @@ import Comment from "./Comment";
 import CommentInput from "./CommentInput";
 import { UserContext } from "../context/UserContext";
 import Delete from "./Delete";
-import { ErrorContext } from "../context/ErrorContext";
 
 const Article = () => {
   const [article, setArticle] = useState({});
   const [comments, setCommments] = useState([]);
   const [triggerCommentId, setTriggerCommentId] = useState("");
+  const [commentError, setCommentError] = useState(null);
   const { article_id } = useParams();
   const { user } = useContext(UserContext);
-  const { error } = useContext(ErrorContext);
   useEffect(() => {
     fetchArticleById(article_id).then((article) => {
       setArticle(article);
@@ -44,15 +43,17 @@ const Article = () => {
                 comment={comment}
                 article={article}
                 setTriggerCommentId={setTriggerCommentId}
+                setCommentError={setCommentError}
               />
               {article.author === user && (
                 <Delete
                   comment_id={comment.comment_id}
                   setComments={setCommments}
+                  setCommentError={setCommentError}
                 />
               )}
-              {error && triggerCommentId === comment.comment_id && (
-                <p className="error">{error}</p>
+              {commentError && triggerCommentId === comment.comment_id && (
+                <p className="error">{commentError}</p>
               )}
             </>
           );
