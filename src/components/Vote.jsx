@@ -1,11 +1,14 @@
-import { useContext } from "react";
 import { updateVotesByCommentId } from "../../newsApi";
-import { ErrorContext } from "../context/ErrorContext";
 
-const Vote = ({ setVotes, setIsVisible, comment, setTriggerCommentId }) => {
-  const { setError } = useContext(ErrorContext);
+const Vote = ({
+  setVotes,
+  setIsVisible,
+  comment,
+  setTriggerCommentId,
+  setCommentError,
+}) => {
   const handleClick = (e) => {
-    setError(null);
+    setCommentError(null);
     setVotes((currentVotes) => Number(currentVotes) + Number(e.target.value));
     updateVotesByCommentId(comment.comment_id, {
       inc_votes: e.target.value,
@@ -22,7 +25,7 @@ const Vote = ({ setVotes, setIsVisible, comment, setTriggerCommentId }) => {
           setVotes((currentVotes) => Number(currentVotes) + 1);
         }
         setTriggerCommentId(comment.comment_id);
-        setError("Your vote was not successful. Please try again!");
+        setCommentError("Your vote was not successful. Please try again!");
       });
   };
   return (

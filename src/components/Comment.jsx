@@ -2,11 +2,15 @@ import { useContext, useState } from "react";
 import Vote from "./Vote";
 import Delete from "./Delete";
 import { UserContext } from "../context/UserContext";
-import { ErrorContext } from "../context/ErrorContext";
 
-const Comment = ({ comment, setComments, article, setTriggerCommentId }) => {
+const Comment = ({
+  comment,
+  setComments,
+  article,
+  setTriggerCommentId,
+  setCommentError,
+}) => {
   const [votes, setVotes] = useState(comment.votes);
-  const { error } = useContext(ErrorContext);
   const [isVisible, setIsVisible] = useState(true);
   const { user } = useContext(UserContext);
   const isAuthor = () => {
@@ -29,6 +33,7 @@ const Comment = ({ comment, setComments, article, setTriggerCommentId }) => {
                   setIsVisible={setIsVisible}
                   comment={comment}
                   setTriggerCommentId={setTriggerCommentId}
+                  setCommentError={setCommentError}
                 />
               )}
               {comment.author === user && !isAuthor() && (
@@ -36,6 +41,7 @@ const Comment = ({ comment, setComments, article, setTriggerCommentId }) => {
                   setComments={setComments}
                   comment_id={comment.comment_id}
                   setTriggerCommentId={setTriggerCommentId}
+                  setCommentError={setCommentError}
                 />
               )}
             </div>

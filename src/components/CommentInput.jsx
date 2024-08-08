@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { updateCommentsByArticleId } from "../../newsApi";
-import { ErrorContext } from "../context/ErrorContext";
 
 const CommentInput = ({ setComments, article_id }) => {
-  const { error, setError } = useContext(ErrorContext);
+  const [commentInputError, setCommentInputError] = useState("");
   const { user } = useContext(UserContext);
   const [comment, setComment] = useState("");
   const [isVisible, setIsvisible] = useState(false);
@@ -19,6 +18,7 @@ const CommentInput = ({ setComments, article_id }) => {
     setIsvisible(false);
   };
   const handleChange = (e) => {
+    setCommentInputError(null);
     setComment(e.target.value);
     setIsvisible(true);
   };
@@ -31,12 +31,12 @@ const CommentInput = ({ setComments, article_id }) => {
     updateCommentsByArticleId(article_id, commentObject)
       .then((newComment) => {
         setComments((currentComments) => [newComment, ...currentComments]);
+        setIsvisible(false);
+        setComment("");
       })
       .catch((err) => {
-        setError("Unable to post comment, try again");
+        setCommentInputError("Unable to post comment, try again");
       });
-    setIsvisible(false);
-    setComment("");
   };
   return (
     <>
@@ -57,7 +57,7 @@ const CommentInput = ({ setComments, article_id }) => {
           </div>
         )}
       </form>
-      {error && error.includes("post") && <p className="error">{error}</p>}
+      {commentInputError && <p className="error">{commentInputError}</p>}
     </>
   );
 };
