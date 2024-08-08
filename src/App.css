@@ -53,6 +53,7 @@ h1 {
 }
 .article-container button:hover {
   cursor: pointer;
+  background-color: red;
 }
 .card-content {
   text-align: center;
@@ -89,6 +90,30 @@ h1 {
   padding: 0.5rem;
 }
 .error {
+  color: red;
+}
+.flex-header {
+  display: flex;
+  justify-content: space-between;
+}
+nav {
+  align-self: center;
+}
+.flex-nav {
+  display: flex;
+  gap: var(--mg-100);
+  align-self: center;
+}
+.flex-nav a {
+  text-decoration: none;
+}
+.flex-nav li {
+  list-style: none;
+  color: black;
+}
+.flex-nav li:hover,
+h1:hover {
+  cursor: pointer;
   color: red;
 }
 @media (min-width: 50rem) {
