@@ -8,6 +8,14 @@ export const fetchArticles = ({ topic, sort_by, order_by }) => {
   return newsApi
     .get("/articles", { params: { topic, sort_by, order_by } })
     .then(({ data: { articles } }) => {
+      if (articles.length === 0) {
+        return Promise.reject({
+          response: {
+            data: { message: "No articles found for this topic" },
+            status: 404,
+          },
+        });
+      }
       return articles;
     })
     .catch((err) => {

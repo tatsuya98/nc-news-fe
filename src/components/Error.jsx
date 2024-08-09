@@ -1,6 +1,6 @@
-const Error = ({ error }) => {
-  const status = error.response.status;
-  const message = error.response.data.message;
+const Error = ({ error: { response } }) => {
+  const status = response.status;
+  const message = response.data.message;
   return (
     <div className="not-found-flex-container">
       {
