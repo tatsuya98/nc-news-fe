@@ -11,14 +11,14 @@ const Header = () => {
   return (
     <>
       <header className="flex-header">
-        <a className="home" href="/articles">
+        <a className="home" href="/">
           <h1>nc news</h1>
         </a>
         <nav>
           <ul className="flex-nav">
             {topics.map((topic) => {
               return (
-                <Link key={topic.slug} to={`/articles/${topic.slug}`}>
+                <Link key={topic.slug} to={`/${topic.slug}`}>
                   <li>{topic.slug}</li>
                 </Link>
               );

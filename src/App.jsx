@@ -11,13 +11,10 @@ function App() {
       <Header />
       <Routes>
         <Route path="*" element={<NotFound />} />
-        <Route
-          path="/articles/:fake"
-          element={<Navigate to="/error" replace />}
-        />
+        <Route path="/:fake" element={<Navigate to="/error" replace />} />
         <Route path="/error" element={<NotFound />} />
-        <Route path="/articles/:topic?" element={<ArticleList />} />
-        <Route path="/articles/article/:article_id" element={<Article />} />
+        <Route path="/:topic?" element={<ArticleList />} />
+        <Route path="/article/:article_id" element={<Article />} />
       </Routes>
     </>
   );

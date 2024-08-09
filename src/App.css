@@ -48,6 +48,7 @@ nav {
 .article-container p {
   margin-bottom: var(--mg-100);
 }
+
 .active {
   background: black;
   color: #fff;
@@ -107,7 +108,8 @@ nav {
 #upvote:hover,
 #downvote:hover,
 .form-submit:hover,
-.delete-button:hover {
+.delete-button:hover,
+.link-to:hover {
   background-color: red;
   cursor: pointer;
 }
