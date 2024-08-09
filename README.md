@@ -10,5 +10,6 @@ The first drop down menu lets you sort by one of the options the second dropdown
 2. clone the repo using git clone
 3. in the terminal do npm install to install necessary dependepcies
 4. do npm run dev in the terminal to host a local version of the site
+5. because there is no  at the moment user login/ authentication the only way to change the user is to go into the context directory and change the initial user state value in the UserContext file
 # Disclaimer
 This portfolio project was created as part of a Digital Skills Bootcamp in Software Engineering provided by [Northcoders](https://northcoders.com/)
