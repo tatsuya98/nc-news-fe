@@ -144,6 +144,12 @@ h1:hover {
   cursor: pointer;
   color: red;
 }
+.not-found-flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: var(--mg-200);
+}
 
 @media (min-width: 50rem) {
   .grid-container {

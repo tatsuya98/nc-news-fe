@@ -7,11 +7,11 @@ const CommentInput = ({ setComments, article_id }) => {
   const { user, isLoggedIn } = useContext(UserContext);
   const [comment, setComment] = useState("");
   const [isVisible, setIsvisible] = useState(false);
-  const [isFilled, setIsFilled] = useState(false);
+  const [isCommentFilled, setIsCommentFilled] = useState(false);
 
   useEffect(() => {
     if (!comment) {
-      setIsFilled(false);
+      setIsCommentFilled(false);
     }
   }, [comment]);
   const handleCancel = (e) => {
@@ -22,7 +22,7 @@ const CommentInput = ({ setComments, article_id }) => {
   const handleChange = (e) => {
     setCommentInputError(null);
     setComment(e.target.value);
-    setIsFilled(true);
+    setIsCommentFilled(true);
   };
   const handleVisbility = () => {
     setCommentInputError(null);
@@ -30,6 +30,7 @@ const CommentInput = ({ setComments, article_id }) => {
   };
   const handleClick = (e) => {
     e.preventDefault();
+    setCommentInputError(null);
     if (!isLoggedIn) {
       setCommentInputError("must be logged in to comment");
       return;
@@ -64,7 +65,7 @@ const CommentInput = ({ setComments, article_id }) => {
             <button className="form-submit" onClick={handleCancel}>
               cancel
             </button>
-            {isFilled && isVisible ? (
+            {isCommentFilled && isVisible ? (
               <button className="form-submit" onClick={handleClick}>
                 add comment
               </button>

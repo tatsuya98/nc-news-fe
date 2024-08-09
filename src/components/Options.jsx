@@ -4,6 +4,7 @@ const Options = ({
   setSearchParams,
   sortBy,
   orderBy,
+  setIsQueryError,
 }) => {
   const handleSortBy = (e) => {
     setSortBy(e.target.value);
@@ -15,12 +16,26 @@ const Options = ({
   };
   return (
     <div className="query-container">
-      <select name="sort-by" id="sort-by" onChange={handleSortBy}>
+      <select
+        name="sort-by"
+        id="sort-by"
+        onChange={handleSortBy}
+        onFocus={() => {
+          setIsQueryError(false);
+        }}
+      >
         <option value="created_at">date</option>
         <option value="comment_count">comments</option>
         <option value="votes">votes</option>
       </select>
-      <select name="order-by" id="order-by" onChange={handleOrderBy}>
+      <select
+        name="order-by"
+        id="order-by"
+        onChange={handleOrderBy}
+        onFocus={() => {
+          setIsQueryError(false);
+        }}
+      >
         <option value="DESC">descending</option>
         <option value="ASC">ascending</option>
       </select>

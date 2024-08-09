@@ -9,6 +9,9 @@ export const fetchArticles = ({ topic, sort_by, order_by }) => {
     .get("/articles", { params: { topic, sort_by, order_by } })
     .then(({ data: { articles } }) => {
       return articles;
+    })
+    .catch((err) => {
+      return Promise.reject(err);
     });
 };
 export const fetchArticleById = (article_id) => {
