@@ -1,8 +1,15 @@
-# React + Vite
+NC NEWS FE
+live version: https://comfy-moxie-9b56cb.netlify.app/
+nc news is built using react. data fetched using axios. you can view different articles, you can click one of the topics in the navbar and it will take you to a page with articles related to that topic.
+The first drop down menu lets you sort by one of the options the second dropdown is for if you want in ascending or descending order, it is descending by default.
+link to BE: https://github.com/tatsuya98/be-nc-news-project
+minimum node version needed: v21.7.1
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+instructions for how to run:
 
-Currently, two official plugins are available:
+1. fork the repo
+2. clone the repo using git clone
+3. in the terminal do npm install to install necessary dependepcies
+4. do npm run dev in the terminal to host a local version of the site
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This portfolio project was created as part of a Digital Skills Bootcamp in Software Engineering provided by [Northcoders](https://northcoders.com/)
