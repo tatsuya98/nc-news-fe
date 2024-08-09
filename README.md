@@ -1,12 +1,11 @@
-NC NEWS FE
-live version: https://comfy-moxie-9b56cb.netlify.app/
+# NC NEWS FE
+# live version: https://comfy-moxie-9b56cb.netlify.app/
 nc news is built using react. data fetched using axios. you can view different articles, you can click one of the topics in the navbar and it will take you to a page with articles related to that topic.
 The first drop down menu lets you sort by one of the options the second dropdown is for if you want in ascending or descending order, it is descending by default.
-link to BE: https://github.com/tatsuya98/be-nc-news-project
+# link to BE: https://github.com/tatsuya98/be-nc-news-project
 minimum node version needed: v21.7.1
 
-instructions for how to run:
-
+# instructions for how to run:
 1. fork the repo
 2. clone the repo using git clone
 3. in the terminal do npm install to install necessary dependepcies
