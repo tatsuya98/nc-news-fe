@@ -25,6 +25,7 @@ const ArticleList = () => {
     setIsLoading(true);
     fetchArticles(queryObject)
       .then((articles) => {
+        setRequestError(null);
         setArticles(articles);
         setIsLoading(false);
       })
