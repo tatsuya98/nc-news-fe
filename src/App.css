@@ -6,17 +6,33 @@
   --bg-color-300: hsl(220, 14%, 96%);
 }
 body {
+  font-family: "Inter", san-serif;
   background-color: var(--bg-color-300);
 }
-
+.flex-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 h1 {
   margin-left: var(--mg-100);
   color: black;
   display: inline;
 }
+nav {
+  align-self: center;
+}
 .home {
   text-decoration: none;
   width: fit-content;
+  align-self: center;
+}
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 .article-container {
   display: grid;
@@ -27,6 +43,7 @@ h1 {
   padding: var(--mg-300);
   border-radius: 10px;
   box-shadow: 10px 10px 0.5em gray;
+  justify-items: center;
 }
 .article-container p {
   margin-bottom: var(--mg-100);
@@ -51,10 +68,7 @@ h1 {
   padding-block: 0.5rem;
   border-radius: 0.625rem;
 }
-.article-container button:hover {
-  cursor: pointer;
-  background-color: red;
-}
+
 .card-content {
   text-align: center;
 }
@@ -63,6 +77,7 @@ h1 {
 }
 .comment-count {
   font-weight: bold;
+  margin-right: auto;
 }
 .commenter p {
   font-weight: bold;
@@ -89,10 +104,26 @@ h1 {
 #downvote {
   padding: 0.5rem;
 }
+#upvote:hover,
+#downvote:hover,
+.form-submit:hover,
+.delete-button:hover {
+  background-color: red;
+  cursor: pointer;
+}
+#grey-out {
+  background-color: hsla(0, 0%, 0%, 0.644);
+}
+#comment-input {
+  margin-bottom: var(--mg-100);
+}
 .error {
   color: red;
 }
-
+.buttons {
+  display: flex;
+  gap: var(--mg-100);
+}
 nav {
   align-self: center;
 }
@@ -113,10 +144,12 @@ h1:hover {
   cursor: pointer;
   color: red;
 }
+
 @media (min-width: 50rem) {
   .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 300px);
+    justify-content: center;
   }
   .main-content p {
     width: 60ch;

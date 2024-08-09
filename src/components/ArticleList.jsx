@@ -30,7 +30,7 @@ const ArticleList = () => {
   useEffect(() => {
     const queryObject = {
       topic,
-      sort_by: sortBy === "comment_count" ? null : searchParams.get("sort_by"),
+      sort_by: searchParams.get("sort_by"),
       order_by: searchParams.get("order_by"),
     };
     setIsLoading(true);

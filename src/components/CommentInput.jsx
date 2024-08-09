@@ -4,12 +4,14 @@ import { updateCommentsByArticleId } from "../../newsApi";
 
 const CommentInput = ({ setComments, article_id }) => {
   const [commentInputError, setCommentInputError] = useState("");
-  const { user } = useContext(UserContext);
+  const { user, isLoggedIn } = useContext(UserContext);
   const [comment, setComment] = useState("");
   const [isVisible, setIsvisible] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
+
   useEffect(() => {
     if (!comment) {
-      setIsvisible(false);
+      setIsFilled(false);
     }
   }, [comment]);
   const handleCancel = (e) => {
@@ -20,10 +22,18 @@ const CommentInput = ({ setComments, article_id }) => {
   const handleChange = (e) => {
     setCommentInputError(null);
     setComment(e.target.value);
+    setIsFilled(true);
+  };
+  const handleVisbility = () => {
+    setCommentInputError(null);
     setIsvisible(true);
   };
-  const handleSubmit = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
+    if (!isLoggedIn) {
+      setCommentInputError("must be logged in to comment");
+      return;
+    }
     const commentObject = {
       body: comment,
       user,
@@ -40,20 +50,27 @@ const CommentInput = ({ setComments, article_id }) => {
   };
   return (
     <>
-      <form className="comment-form" onSubmit={handleSubmit}>
+      <form className="comment-form">
         <input
           id="comment-input"
           type="text"
           value={comment}
           placeholder="Add a comment..."
           onChange={handleChange}
+          onFocus={handleVisbility}
         />
         {isVisible && (
           <div className="buttons">
-            <button className="form-submit">add comment</button>
             <button className="form-submit" onClick={handleCancel}>
               cancel
             </button>
+            {isFilled && isVisible ? (
+              <button className="form-submit" onClick={handleClick}>
+                add comment
+              </button>
+            ) : (
+              <button id="grey-out">add comment</button>
+            )}
           </div>
         )}
       </form>
