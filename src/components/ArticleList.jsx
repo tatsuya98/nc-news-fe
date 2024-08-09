@@ -12,7 +12,7 @@ const ArticleList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [articlesPerPage, SetArticlesPerPage] = useState(10);
   const [sortBy, setSortBy] = useState("created_at");
-  const [orderBy, setOrderBy] = useState("ASC");
+  const [orderBy, setOrderBy] = useState("DESC");
   const { topic } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [RequestError, setRequestError] = useState(null);
