@@ -51,7 +51,7 @@ const CommentInput = ({ setComments, article_id }) => {
   };
   return (
     <>
-      <form className="comment-form">
+      <form className="comment-form" onSubmit={(e) => e.preventDefault()}>
         <input
           id="comment-input"
           type="text"
