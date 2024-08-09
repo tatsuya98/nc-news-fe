@@ -4,29 +4,40 @@ const Options = ({
   setSearchParams,
   sortBy,
   orderBy,
+  setIsQueryError,
 }) => {
   const handleSortBy = (e) => {
     setSortBy(e.target.value);
-    if (e.target.value !== "comment_count") {
-      setSearchParams({ sort_by: e.target.value, order_by: orderBy });
-    }
+    setSearchParams({ sort_by: e.target.value, order_by: orderBy });
   };
   const handleOrderBy = (e) => {
     setOrderBy(e.target.value);
-    if (sortBy !== "comment_count") {
-      setSearchParams({ sort_by: sortBy, order_by: e.target.value });
-    }
+    setSearchParams({ sort_by: sortBy, order_by: e.target.value });
   };
   return (
     <div className="query-container">
-      <select name="sort-by" id="sort-by" onChange={handleSortBy}>
+      <select
+        name="sort-by"
+        id="sort-by"
+        onChange={handleSortBy}
+        onFocus={() => {
+          setIsQueryError(false);
+        }}
+      >
         <option value="created_at">date</option>
         <option value="comment_count">comments</option>
         <option value="votes">votes</option>
       </select>
-      <select name="order-by" id="order-by" onChange={handleOrderBy}>
-        <option value="ASC">ascending</option>
+      <select
+        name="order-by"
+        id="order-by"
+        onChange={handleOrderBy}
+        onFocus={() => {
+          setIsQueryError(false);
+        }}
+      >
         <option value="DESC">descending</option>
+        <option value="ASC">ascending</option>
       </select>
     </div>
   );

@@ -4,6 +4,7 @@ import ArticleCard from "./ArticleCard";
 import Pagination from "./Pagination";
 import { useParams, useSearchParams } from "react-router-dom";
 import Options from "./Options";
+import Error from "./Error";
 
 const ArticleList = () => {
   const [articles, setArticles] = useState([]);
@@ -14,31 +15,23 @@ const ArticleList = () => {
   const [orderBy, setOrderBy] = useState("ASC");
   const { topic } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const sortArticles = (articles, orderByQuery) => {
-    if (orderByQuery === "DESC" && sortBy === "comment_count") {
-      return articles.sort(
-        (a, b) => Number(b.comment_count) - Number(a.comment_count)
-      );
-    } else if (orderByQuery === "ASC" && sortBy === "comment_count") {
-      return articles.sort(
-        (a, b) => Number(a.comment_count) - Number(b.comment_count)
-      );
-    }
-    return articles;
-  };
+  const [RequestError, setRequestError] = useState(null);
   useEffect(() => {
     const queryObject = {
       topic,
-      sort_by: sortBy === "comment_count" ? null : searchParams.get("sort_by"),
+      sort_by: searchParams.get("sort_by"),
       order_by: searchParams.get("order_by"),
     };
     setIsLoading(true);
-    fetchArticles(queryObject).then((articles) => {
-      const sortedArticles = sortArticles(articles, orderBy);
-      setArticles(sortedArticles);
-      setIsLoading(false);
-    });
+    fetchArticles(queryObject)
+      .then((articles) => {
+        setArticles(articles);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setRequestError(err);
+      });
   }, [topic, sortBy, orderBy]);
   const indexOfLastArticle = currentPage * articlesPerPage;
   const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
@@ -52,26 +45,32 @@ const ArticleList = () => {
   return (
     <main>
       {isLoading && <h2>Loading...</h2>}
-      <div className="flex-container">
-        <Pagination
-          length={articles.length}
-          articlesPerPage={articlesPerPage}
-          handlePagination={handlePagination}
-          currentPage={currentPage}
-        />
-        <Options
-          setSearchParams={setSearchParams}
-          setOrderBy={setOrderBy}
-          setSortBy={setSortBy}
-          sortBy={sortBy}
-          orderBy={orderBy}
-        />
-      </div>
-      <div className="grid-container">
-        {currentArticles.map((article) => {
-          return <ArticleCard key={article.article_id} article={article} />;
-        })}
-      </div>
+      {RequestError ? (
+        <Error error={RequestError} />
+      ) : (
+        <>
+          <div className="flex-container">
+            <Pagination
+              length={articles.length}
+              articlesPerPage={articlesPerPage}
+              handlePagination={handlePagination}
+              currentPage={currentPage}
+            />
+            <Options
+              setSearchParams={setSearchParams}
+              setOrderBy={setOrderBy}
+              setSortBy={setSortBy}
+              sortBy={sortBy}
+              orderBy={orderBy}
+            />
+          </div>
+          <div className="grid-container">
+            {currentArticles.map((article) => {
+              return <ArticleCard key={article.article_id} article={article} />;
+            })}
+          </div>
+        </>
+      )}
     </main>
   );
 };
